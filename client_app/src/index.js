@@ -8,8 +8,8 @@ import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 import defaults from "./graphql/defaults";
 import resolvers from "./graphql/resolvers";
+import Layout from './layout';
 import './index.css';
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 const theme = createMuiTheme({
@@ -41,7 +41,7 @@ const client = new ApolloClient({
 ReactDOM.render(
   <ApolloProvider client={client}>
     <MuiThemeProvider theme={theme}>
-		  <App />
+		  <Layout />
     </MuiThemeProvider>
 	</ApolloProvider>,
   document.getElementById('root')
