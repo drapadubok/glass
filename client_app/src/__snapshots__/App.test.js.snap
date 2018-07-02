@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EventForm is rendered 1`] = `
+<form>
+  <input
+    id="name"
+    value="meh"
+  />
+  <button
+    type="submit"
+  >
+    Add Event
+  </button>
+</form>
+`;
+
+exports[`LocalStateForm is rendered 1`] = `
+<div
+  className="sidebar"
+>
+  <ul
+    style={
+      Object {
+        "padding": 0,
+      }
+    }
+  >
+    <li
+      className="sidebar-item"
+      onClick={[Function]}
+    >
+      React
+    </li>
+    <li
+      className="sidebar-item"
+      onClick={[Function]}
+    >
+      Apollo Client
+    </li>
+    <li
+      className="sidebar-item"
+      onClick={[Function]}
+    >
+      Next.js
+    </li>
+  </ul>
+</div>
+`;
