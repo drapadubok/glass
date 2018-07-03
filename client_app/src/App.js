@@ -28,29 +28,14 @@ class App extends Component {
         {({ loading, error, data }) => {
           if (loading) return (<div>Loading!</div>);
           if (error) return (<div>Error!</div>);
-          return ()
+          return (
+            <EventForm />
+            <LocalStateForm />
+            <RegistrationForm />
+            <p>Current local var: {data.localState.localStateParam}</p>
+          )
         }}
       </Query>
     );
   }
 }
-
-
-
-/*
-<Drawer open={true}>
-  <List component="nav">
-    <ListItem button>
-      <ListItemText primary="Trash" />
-    </ListItem>
-    <ListItem button component="a" href="#simple-list">
-      <ListItemText primary="Spam" />
-    </ListItem>
-  </List>
-</Drawer>
-
-<EventForm />
-<LocalStateForm />
-<RegistrationForm />
-<p>Current local var: {data.localState.localStateParam}</p>
-*/

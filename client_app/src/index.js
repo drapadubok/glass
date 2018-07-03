@@ -9,7 +9,6 @@ import green from '@material-ui/core/colors/green';
 import defaults from "./graphql/defaults";
 import resolvers from "./graphql/resolvers";
 import Layout from './layout';
-import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 const theme = createMuiTheme({

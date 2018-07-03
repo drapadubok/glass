@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { Link } from "@reach/router";
+
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/Inbox';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import Divider from '@material-ui/core/Divider';
 
 
@@ -17,6 +20,9 @@ const styles = theme => ({
     width: drawerWidth,
   },
   toolbar: theme.mixins.toolbar,
+  links: {
+    textDecoration: 'none'
+  }
 });
 
 class Sidebar extends Component {
@@ -26,21 +32,35 @@ class Sidebar extends Component {
       <Drawer variant="permanent" classes={{ paper: classes.drawerPaper }}>
         <div className={classes.toolbar} />
         <List>
-          <ListItem button>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Inbox" />
-          </ListItem>
+          <Link to="/register" className={classes.links}>
+            <ListItem button>
+              <ListItemIcon>
+                <PersonAddIcon />
+              </ListItemIcon>
+              <ListItemText primary="Sign up" />
+            </ListItem>
+          </Link>
+          <Link to="/login" className={classes.links}>
+            <ListItem button>
+              <ListItemIcon>
+                <PlayArrowIcon />
+              </ListItemIcon>
+              <ListItemText primary="Login" />
+            </ListItem>
+          </Link>
         </List>
         <Divider />
         <List>
-          <ListItem button>
-            <ListItemText primary="Trash" />
-          </ListItem>
-          <ListItem button component="a" href="#simple-list">
-            <ListItemText primary="Spam" />
-          </ListItem>
+          <Link to="/" className={classes.links}>
+            <ListItem button>
+              <ListItemText primary="Home" />
+            </ListItem>
+          </Link>
+          <Link to="dashboard" className={classes.links}>
+            <ListItem button>
+              <ListItemText primary="Dashboard" />
+            </ListItem>
+          </Link>
         </List>
       </Drawer>
     );

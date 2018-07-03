@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Navbar from './navbar';
 import Sidebar from './sidebar';
@@ -22,6 +23,7 @@ class Layout extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
+        <CssBaseline />
         <Navbar />
         <Sidebar />
         <Main />
