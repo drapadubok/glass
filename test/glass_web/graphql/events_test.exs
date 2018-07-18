@@ -28,3 +28,17 @@ defmodule PlateSlateWeb.Schema.Query.MenuItemsTest do
            }
   end
 end
+
+
+mutation {
+  createEvent(
+    name: "newEvent",
+    description: "shit shit",
+    propertiesInput: [
+      {name: "p1"},
+      {name: "p2"}
+    ]
+  ) {
+    id
+  }
+}

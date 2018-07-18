@@ -7,6 +7,7 @@ defmodule Glass.Events do
   alias Glass.Repo
 
   alias Glass.Events.Branch
+  require Logger
 
   @doc """
   Returns the list of branches.
@@ -200,6 +201,7 @@ defmodule Glass.Events do
   end
 
   alias Glass.Events.Event
+  alias Glass.Events.Property
 
   @doc """
   Returns the list of events.
@@ -243,9 +245,20 @@ defmodule Glass.Events do
 
   """
   def create_event(attrs \\ %{}) do
-    %Event{}
-    |> Event.changeset(attrs)
-    |> Repo.insert()
+    event = Event.changeset(%Event{}, attrs)
+    properties = Enum.map(Map.get(attrs, :properties_input), &(Property.changeset(%Property{}, &1)))
+    Logger.info("#{inspect(event)}")
+    Logger.info("#{inspect(properties)}")
+    event_with_properties = Ecto.Changeset.put_assoc(event, :properties, properties)
+    Logger.info("#{inspect(event_with_properties)}")
+    case Repo.insert(event_with_properties) do
+        {:ok, event_with_properties} -> {:ok, %{id: event_with_properties.id}}
+        {:error, changeset} -> {:error, changeset}
+    end
+
+    #%Event{}
+    #|> Event.changeset(attrs)
+    #|> Repo.insert()
   end
 
   @doc """
@@ -294,8 +307,6 @@ defmodule Glass.Events do
   def change_event(%Event{} = event) do
     Event.changeset(event, %{})
   end
-
-  alias Glass.Events.Property
 
   @doc """
   Returns the list of properties.

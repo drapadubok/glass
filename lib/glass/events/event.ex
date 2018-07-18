@@ -20,6 +20,7 @@ defmodule Glass.Events.Event do
   def changeset(event, attrs) do
     event
     |> cast(attrs, [:name])
+    #|> cast_assoc(:properties, attrs["properties_input"])
     |> validate_required([:name])
   end
 end

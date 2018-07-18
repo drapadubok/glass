@@ -11,6 +11,20 @@ import { addEvent } from '../../graphql/queries';
 class EventForm extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      event: {},
+      properties: [
+        {},
+        {},
+        {}
+      ]
+    }
+  }
+
+  addProperty() {
+    this.setState(prevState => ({
+      properties: [...prevState.properties, []]
+    }))
   }
   
   render() {

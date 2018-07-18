@@ -53,7 +53,6 @@ defmodule GlassWeb.Resolvers.Events do
 
   def create_event(_root, args, _info) do
     Logger.info("#{inspect(args)}")
-    #  %{description: "", name: "", properties_input: [%{name: "", type: ""}]}
     case Glass.Events.create_event(args) do
       {:ok, event} ->
         {:ok, event}
