@@ -28,17 +28,11 @@ defmodule GlassWeb.Router do
     post("/logout", ApiAuthController, :logout)
   end
 
-  forward("/graphql", Absinthe.Plug, schema: GlassWeb.Schema)
+  scope "/graphql" do
+    pipe_through([:api, :auth])
 
-  forward(
-    "/graphiql",
-    Absinthe.Plug.GraphiQL,
-    schema: GlassWeb.Schema,
-    interface: :simple
-  )
+    forward("/", Absinthe.Plug, schema: GlassWeb.Schema)
+  end
 
-  resources("/branches", GlassWeb.BranchController, except: [:new, :edit])
-  resources("/sources", GlassWeb.SourceController, except: [:new, :edit])
-  resources("/events", GlassWeb.EventController, except: [:new, :edit])
-  resources("/properties", GlassWeb.PropertyController, except: [:new, :edit])
+  forward("/graphiql", Absinthe.Plug.GraphiQL, schema: GlassWeb.Schema)
 end

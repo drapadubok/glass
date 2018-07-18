@@ -1,6 +1,12 @@
 defmodule GlassWeb.Resolvers.Events do
-  def all_branches(_args, _info) do
+  require Logger
+
+  def all_branches(_args, %{context: %{current_user: %{id: id}}}) do
     {:ok, Glass.Events.list_branches()}
+  end
+
+  def all_branches(_args, _info) do
+    {:error, "Not Authorized"}
   end
 
   def all_sources(_args, _info) do
@@ -32,6 +38,28 @@ defmodule GlassWeb.Resolvers.Events do
 
       _error ->
         {:error, "could not create branch"}
+    end
+  end
+
+  def create_source(_root, args, _info) do
+    case Glass.Events.create_branch(args) do
+      {:ok, branch} ->
+        {:ok, branch}
+
+      _error ->
+        {:error, "could not create branch"}
+    end
+  end
+
+  def create_event(_root, args, _info) do
+    Logger.info("#{inspect(args)}")
+    #  %{description: "", name: "", properties_input: [%{name: "", type: ""}]}
+    case Glass.Events.create_event(args) do
+      {:ok, event} ->
+        {:ok, event}
+
+      _error ->
+        {:error, "could not create event"}
     end
   end
 end

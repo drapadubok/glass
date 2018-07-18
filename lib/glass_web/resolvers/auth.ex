@@ -14,7 +14,18 @@ defmodule GlassWeb.Resolvers.Auth do
     end
   end
 
-  def login_user(_root, %{email: email, password: password}, _info) do
+  def signin_user(_root, %{email: email, password: password}, _info) do
+    with {:ok, user} <- Auth.authenticate_user(email, password) do
+      {:ok, token, _claims} = Guardian.encode_and_sign(user)
+      {:ok, %{token: token}}
+    end
+    |> case do
+      {:error, error} -> {:error, error}
+      other -> other
+    end
+  end
+
+  def signout_user(_root, %{email: email, password: password}, _info) do
     with {:ok, user} <- Auth.authenticate_user(email, password) do
       {:ok, token, _claims} = Guardian.encode_and_sign(user)
       {:ok, %{token: token}}

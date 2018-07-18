@@ -95,7 +95,7 @@ class Form extends Component {
         <Grid container spacing={24}>
           <Grid item xs={3}>
               <Card className={classes.card}>
-                <CardHeader title="Register or Sign in" />
+                <CardHeader title="Authentication" />
                 <CardContent>
                   <form onSubmit={handleSubmit} className={classes.container} autoComplete="off">
                     <TextField

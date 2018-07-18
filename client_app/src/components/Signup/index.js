@@ -18,13 +18,10 @@ const handleSubmit = (payload, { props, setSubmitting, setErrors }) => {
   .then(
      () => {
         setSubmitting(false)
-        console.log("Thenned")
      },
      error => {
-         setSubmitting(false)
-         setErrors(error)
-         console.log("Errored")
-         console.log(error)
+        setSubmitting(false)
+        setErrors(error)
      }
    )
 };

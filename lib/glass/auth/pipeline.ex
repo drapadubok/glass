@@ -12,4 +12,7 @@ defmodule Glass.Auth.Pipeline do
 
   # Load the user if either of the above succeeded
   plug(Guardian.Plug.LoadResource, allow_blank: true, ensure: true)
+
+  # GraphQL context
+  plug(GlassWeb.Context)
 end

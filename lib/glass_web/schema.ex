@@ -32,6 +32,13 @@ defmodule GlassWeb.Schema do
   end
 
   mutation do
+    field :create_event, :event do
+      arg(:name, non_null(:string))
+      arg(:description, non_null(:string))
+      arg(:properties_input, list_of(non_null(:property_input)))
+      resolve(&Resolvers.Events.create_event/3)
+    end
+
     field :create_branch, :branch do
       arg(:name, non_null(:string))
       resolve(&Resolvers.Events.create_branch/3)
@@ -43,10 +50,10 @@ defmodule GlassWeb.Schema do
       resolve(&Resolvers.Auth.signup_user/3)
     end
 
-    field :sign_in_user, :session do
+    field :signin_user, :session do
       arg(:email, non_null(:string))
       arg(:password, non_null(:string))
-      resolve(&Resolvers.Auth.login_user/3)
+      resolve(&Resolvers.Auth.signin_user/3)
     end
   end
 end

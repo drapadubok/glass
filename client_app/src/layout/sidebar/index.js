@@ -56,9 +56,14 @@ class Sidebar extends Component {
               <ListItemText primary="Home" />
             </ListItem>
           </Link>
-          <Link to="dashboard" className={classes.links}>
+          <Link to="/dashboard" className={classes.links}>
             <ListItem button>
               <ListItemText primary="Dashboard" />
+            </ListItem>
+          </Link>
+          <Link to="/eventeditor" className={classes.links}>
+            <ListItem button>
+              <ListItemText primary="Event Editor" />
             </ListItem>
           </Link>
         </List>
