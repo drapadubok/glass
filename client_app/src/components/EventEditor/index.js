@@ -23,12 +23,13 @@ class EventForm extends React.Component {
 
   addProperty() {
     this.setState(prevState => ({
-      properties: [...prevState.properties, []]
+      properties: [...prevState.properties, {}]
     }))
   }
   
   render() {
     const { handleSubmit, handleChange, isSubmitting, values } = this.props;
+    console.log(this.state.properties)
     
     return (
       <form onSubmit={handleSubmit}>
@@ -41,6 +42,12 @@ class EventForm extends React.Component {
           margin="normal"
           onChange={handleChange}
         />
+        <div>
+          {
+            this.state.properties.map(p => <div>I'm a prop</div>)
+          }
+        </div>
+        <Button disabled={isSubmitting} onClick={this.addProperty.bind(this)}>Add Property</Button>
         <Button type="submit" disabled={isSubmitting}>Submit</Button>
       </form>
     );

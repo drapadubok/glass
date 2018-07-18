@@ -12,15 +12,15 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 
-import { signInMutation } from '../../graphql/queries';
+import { signinMutation } from '../../graphql/queries';
 import { signupMutation } from '../../graphql/queries';
 
 const handleSubmitLogin = (payload, { props, setSubmitting, setErrors }) => {
-  props.signInMutation({
+  props.signinMutation({
     variables: { email: payload.email, password: payload.password }
   })
   .then(({ data }) => {
-    localStorage.setItem('phoenixAuthToken', data.signInUser.token);
+    localStorage.setItem('phoenixAuthToken', data.signIiUser.token);
   })
   .then(
      () => {
@@ -135,7 +135,7 @@ class Form extends Component {
 }
 
 export const Login = compose(
-   graphql(signInMutation, {"name": "signInMutation"}),
+   graphql(signinMutation, {"name": "signinMutation"}),
    graphql(signupMutation, {"name": "signupMutation"}),
    withFormik({
       mapPropsToValues: props => ({ email: "", password: "" }),
