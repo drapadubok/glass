@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql, compose } from 'react-apollo';
 
-import { updateLocalStateParamMutation } from '../graphql/queries';
+import { updateLocalStateParamMutation } from '../../graphql/queries';
 
 
 export class LocalForm extends React.Component {

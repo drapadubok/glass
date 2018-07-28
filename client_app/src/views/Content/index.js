@@ -3,33 +3,42 @@ import { withStyles } from '@material-ui/core/styles';
 import { Router } from "@reach/router";
 
 import AuthenticatedRoute from '../../components/AuthenticatedRoute';
-import Signup from '../../components/Signup';
 import Login from '../../components/Login';
 import EventEditor from '../../components/EventEditor';
+import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
-    minWidth: 0, // So the Typography noWrap works
+    minWidth: 0,
   },
   toolbar: theme.mixins.toolbar,
 });
 
 const Home = () => (
-  <div>
+  <Grid
+    container
+    spacing={0}
+    direction="column"
+    alignItems="center"
+    justify="center">
+  <Grid item xs={3}>    
     <h2>Welcome</h2>
-  </div>
+  </Grid>
+</Grid> 
 );
 
 const Dashboard = () => (
-  <div>
-    <h2>Dashboard</h2>
-  </div>
+    <Grid container wrap="nowrap" justify="center" spacing={16}>
+      <Grid item>
+        <h2>Dashboard</h2>
+      </Grid>
+    </Grid>
 );
 
-class MainContent extends Component {
+class Content extends Component {
   render() {
     const { classes } = this.props;
     return (
@@ -37,7 +46,6 @@ class MainContent extends Component {
         <div className={classes.toolbar} />
         <Router>
           <Home path="/" />
-          <Signup path="register" />
           <Login path="login" />
           <AuthenticatedRoute path="dashboard" component={Dashboard} />
           <AuthenticatedRoute path="eventeditor" component={EventEditor} />
@@ -47,7 +55,7 @@ class MainContent extends Component {
   }
 }
 
-export default withStyles(styles)(MainContent);
+export default withStyles(styles)(Content);
 
 /*
 
@@ -91,5 +99,4 @@ class App extends Component {
   }
 }
 
-
-                 */
+*/

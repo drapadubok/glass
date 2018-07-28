@@ -1,0 +1,1 @@
+/** A button component that contains logic to sign user out (call API to revoke token, and remove it from localStorage) */

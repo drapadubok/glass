@@ -23,9 +23,9 @@ config :logger, :console,
 # Authentication lib config
 config :glass, Glass.Auth.Guardian,
   issuer: "Glass.#{Mix.env()}",
-  ttl: {60, :minutes},
+  ttl: {10, :minutes},
   token_ttl: %{
-    "magic" => {30, :minutes},
+    "magic" => {10, :minutes},
     "access" => {1, :days}
   },
   verify_issuer: true,

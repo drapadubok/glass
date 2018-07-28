@@ -2,14 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
+import { createHttpLink } from 'apollo-link-http';
+import { setContext } from 'apollo-link-context';
+
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import registerServiceWorker from './registerServiceWorker';
+
+import App from './views/App';
 import defaults from "./graphql/defaults";
 import resolvers from "./graphql/resolvers";
-import Layout from './layout';
-import registerServiceWorker from './registerServiceWorker';
+import typeDefs from "./graphql/typedefs";
+import { apiUrl } from "./config";
+
 
 const theme = createMuiTheme({
   palette: {
@@ -26,10 +34,23 @@ const theme = createMuiTheme({
   },
 });
 
-let typeDefs = [];
+const httpLink = createHttpLink({
+  uri: apiUrl,
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('phoenixAuthToken');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : null,
+    }
+  }
+});
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
+  uri: apiUrl,
+  link: authLink.concat(httpLink),
   clientState: {
     defaults,
     resolvers,
@@ -40,7 +61,8 @@ const client = new ApolloClient({
 ReactDOM.render(
   <ApolloProvider client={client}>
     <MuiThemeProvider theme={theme}>
-		  <Layout />
+      <CssBaseline />
+      <App />
     </MuiThemeProvider>
 	</ApolloProvider>,
   document.getElementById('root')

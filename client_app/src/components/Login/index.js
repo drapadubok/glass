@@ -15,6 +15,7 @@ import CardContent from '@material-ui/core/CardContent';
 import { signinMutation } from '../../graphql/queries';
 import { signupMutation } from '../../graphql/queries';
 
+
 const handleSubmitLogin = (payload, { props, setSubmitting, setErrors }) => {
   props.signinMutation({
     variables: { email: payload.email, password: payload.password }
@@ -92,7 +93,7 @@ class Form extends Component {
 
     return (
       <div className={classes.root}>
-        <Grid container spacing={24}>
+        <Grid container justify="center" direction="column" alignItems="center">
           <Grid item xs={3}>
               <Card className={classes.card}>
                 <CardHeader title="Authentication" />

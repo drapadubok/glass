@@ -18,7 +18,7 @@ class Appbar extends Component {
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar>
           <Typography variant="title" color="inherit" noWrap>
-            Clipped drawer
+            Glass - an empty space to fill
           </Typography>
         </Toolbar>
       </AppBar>

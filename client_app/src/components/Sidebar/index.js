@@ -32,14 +32,6 @@ class Sidebar extends Component {
       <Drawer variant="permanent" classes={{ paper: classes.drawerPaper }}>
         <div className={classes.toolbar} />
         <List>
-          <Link to="/register" className={classes.links}>
-            <ListItem button>
-              <ListItemIcon>
-                <PersonAddIcon />
-              </ListItemIcon>
-              <ListItemText primary="Sign up" />
-            </ListItem>
-          </Link>
           <Link to="/login" className={classes.links}>
             <ListItem button>
               <ListItemIcon>

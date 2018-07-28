@@ -247,10 +247,7 @@ defmodule Glass.Events do
   def create_event(attrs \\ %{}) do
     event = Event.changeset(%Event{}, attrs)
     properties = Enum.map(Map.get(attrs, :properties_input), &(Property.changeset(%Property{}, &1)))
-    Logger.info("#{inspect(event)}")
-    Logger.info("#{inspect(properties)}")
     event_with_properties = Ecto.Changeset.put_assoc(event, :properties, properties)
-    Logger.info("#{inspect(event_with_properties)}")
     case Repo.insert(event_with_properties) do
         {:ok, event_with_properties} -> {:ok, %{id: event_with_properties.id}}
         {:error, changeset} -> {:error, changeset}
