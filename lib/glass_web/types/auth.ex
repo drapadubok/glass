@@ -12,4 +12,8 @@ defmodule GlassWeb.Schema.AuthTypes do
   object :session do
     field(:token, :string)
   end
+
+  object :result do
+    field(:success, :boolean)
+  end
 end

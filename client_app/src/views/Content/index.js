@@ -18,22 +18,9 @@ const styles = theme => ({
 });
 
 const Home = () => (
-  <Grid
-    container
-    spacing={0}
-    direction="column"
-    alignItems="center"
-    justify="center">
-  <Grid item xs={3}>    
-    <h2>Welcome</h2>
-  </Grid>
-</Grid> 
-);
-
-const Dashboard = () => (
     <Grid container wrap="nowrap" justify="center" spacing={16}>
       <Grid item>
-        <h2>Dashboard</h2>
+        <h2>Home</h2>
       </Grid>
     </Grid>
 );
@@ -47,7 +34,7 @@ class Content extends Component {
         <Router>
           <Home path="/" />
           <Login path="login" />
-          <AuthenticatedRoute path="dashboard" component={Dashboard} />
+          <AuthenticatedRoute path="dashboard" component={Home} />
           <AuthenticatedRoute path="eventeditor" component={EventEditor} />
         </Router>
       </main>

@@ -26,6 +26,7 @@ defmodule GlassWeb.Resolvers.Auth do
   end
 
   def signout_user(_root, %{token: token}, _info) do
-    {:ok, claims} = Guardian.revoke(token)
+    {:ok, _} = Guardian.revoke(token)
+    {:ok, %{success: true}}
   end
 end

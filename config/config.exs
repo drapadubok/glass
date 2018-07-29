@@ -26,7 +26,7 @@ config :glass, Glass.Auth.Guardian,
   ttl: {10, :minutes},
   token_ttl: %{
     "magic" => {10, :minutes},
-    "access" => {1, :days}
+    "access" => {10, :minutes}
   },
   verify_issuer: true,
   # System.get_env("GUARDIAN_SECRET_KEY")

@@ -55,5 +55,10 @@ defmodule GlassWeb.Schema do
       arg(:password, non_null(:string))
       resolve(&Resolvers.Auth.signin_user/3)
     end
+
+    field :signout_user, :result do
+      arg(:token, non_null(:string))
+      resolve(&Resolvers.Auth.signout_user/3)
+    end
   end
 end
