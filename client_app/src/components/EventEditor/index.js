@@ -14,9 +14,9 @@ class EventForm extends React.Component {
     this.state = {
       event: {},
       properties: [
-        {},
-        {},
-        {}
+        {id: 1},
+        {id: 2},
+        {id: 3}
       ]
     }
   }
@@ -44,7 +44,7 @@ class EventForm extends React.Component {
         />
         <div>
           {
-            this.state.properties.map(p => <div>I'm a prop</div>)
+            this.state.properties.map(p => <div key={p.id}>I'm a prop</div>)
           }
         </div>
         <Button disabled={isSubmitting} onClick={this.addProperty.bind(this)}>Add Property</Button>

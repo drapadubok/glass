@@ -1,4 +1,4 @@
-export { getEvent } from './getEvent';
+export { getEvents } from './getEvents';
 export { addEvent } from './addEvent';
 export { getLocalStateParamQuery } from './getLocalStateParam';
 export { updateLocalStateParamMutation } from './updateLocalStateParam';

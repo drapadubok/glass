@@ -5,6 +5,7 @@ import { Router } from "@reach/router";
 import AuthenticatedRoute from '../../components/AuthenticatedRoute';
 import Login from '../../components/Login';
 import EventEditor from '../../components/EventEditor';
+import EventList from '../../components/EventList';
 import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
@@ -35,6 +36,7 @@ class Content extends Component {
           <Home path="/" />
           <Login path="login" />
           <AuthenticatedRoute path="dashboard" component={Home} />
+          <AuthenticatedRoute path="eventlist" component={EventList} />
           <AuthenticatedRoute path="eventeditor" component={EventEditor} />
         </Router>
       </main>

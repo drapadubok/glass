@@ -42,8 +42,8 @@ export default BananaWrapper;
 
 
 import React from 'react';
-import { shallow } from 'enzyme';
-import { Banana } from '../index'; // Note the syntax { Banana }
+import { shallow } from 'enzyme/build';
+import { Banana } from '..'; // Note the syntax { Banana }
 
 it('should render a Banana component correctly', () => {
 

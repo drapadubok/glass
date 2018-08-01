@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ApolloClient from "apollo-boost";
-import { ApolloProvider } from "react-apollo";
+import { ApolloClient } from "apollo-client";
+import { InMemoryCache } from 'apollo-cache-inmemory';
 import { createHttpLink } from 'apollo-link-http';
+import { ApolloProvider } from "react-apollo";
 import { setContext } from 'apollo-link-context';
 
 import { MuiThemeProvider } from '@material-ui/core/styles';
@@ -49,13 +50,13 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  uri: apiUrl,
   link: authLink.concat(httpLink),
   clientState: {
     defaults,
     resolvers,
     typeDefs
-  }
+  },
+  cache: new InMemoryCache()
 });
 
 ReactDOM.render(
