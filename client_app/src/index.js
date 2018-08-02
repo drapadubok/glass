@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { ApolloClient } from "apollo-client";
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { createHttpLink } from 'apollo-link-http';
+import { onError } from 'apollo-link-error';
 import { ApolloProvider } from "react-apollo";
 import { setContext } from 'apollo-link-context';
 
@@ -49,8 +50,18 @@ const authLink = setContext((_, { headers }) => {
   }
 });
 
+const authErrorLink = onError(({ response, networkError }) => {
+  if (networkError && networkError.statusCode === 401) {
+    // remove cached token on 401 from the server
+    localStorage.removeItem('phoenixAuthToken');
+  }
+});
+
+const link1 = authLink.concat(authErrorLink);
+const link2 = link1.concat(httpLink)
+
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: link2, //authLink.concat(httpLink),
   clientState: {
     defaults,
     resolvers,

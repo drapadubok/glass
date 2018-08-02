@@ -8,8 +8,11 @@ const styles = theme => ({});
 
 
 
-const EventList = ({ data }) => {
-    console.log(data)
+const EventList = ({ data: { error, loading } }) => {
+  if (error && error.networkError && error.networkError.statusCode === 401) {
+    console.log(error.networkError.statusCode)
+  }
+  //console.log(loading)
     return (
       <div>
           keke
