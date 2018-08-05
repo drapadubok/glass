@@ -7,6 +7,8 @@ import { onError } from 'apollo-link-error';
 import { ApolloProvider } from "react-apollo";
 import { setContext } from 'apollo-link-context';
 
+import { navigate } from "@reach/router";
+
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
@@ -54,14 +56,12 @@ const authErrorLink = onError(({ response, networkError }) => {
   if (networkError && networkError.statusCode === 401) {
     // remove cached token on 401 from the server
     localStorage.removeItem('phoenixAuthToken');
+    navigate("/");
   }
 });
 
-const link1 = authLink.concat(authErrorLink);
-const link2 = link1.concat(httpLink)
-
 const client = new ApolloClient({
-  link: link2, //authLink.concat(httpLink),
+  link: authLink.concat(authErrorLink).concat(httpLink),
   clientState: {
     defaults,
     resolvers,
