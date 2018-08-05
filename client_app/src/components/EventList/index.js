@@ -8,16 +8,20 @@ const styles = theme => ({});
 
 
 
-const EventList = ({ data: { error, loading } }) => {
-  if (error && error.networkError && error.networkError.statusCode === 401) {
-    console.log(error.networkError.statusCode)
-  }
-  //console.log(loading)
-    return (
-      <div>
-          keke
-      </div>
-    );
+const EventList = ({ data: { branches, error, loading } }) => {
+  console.log(branches)
+  if (loading) return (<div>Loading...</div>);
+  if (error) return (<div>Error!</div>);
+  return (
+    <div>
+      <h4>Branches</h4>
+      <ul>
+        {
+          branches.map(b => <li key={b.id}>{b.name}</li>)
+        }
+      </ul>
+    </div>
+  );
 }
  
 const ComposedEventList = graphql(getEvents)(EventList)
@@ -27,10 +31,7 @@ export default withStyles(styles)(ComposedEventList);
 
 
 /*
-({ loading, error, data }) => {
-          if (loading) return (<div>Loading...</div>);
-          if (error) return (<div>Error!</div>);
-          
+         
         
 <List selection divided verticalAlign='middle'>
               {
