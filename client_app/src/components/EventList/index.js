@@ -31,7 +31,7 @@ export default withStyles(styles)(ComposedEventList);
 
 
 /*
-         
+        
         
 <List selection divided verticalAlign='middle'>
               {
